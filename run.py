@@ -51,7 +51,7 @@ def get_computer_guess(size):
     y = random.randint(0, size - 1)
     return x, y
 
-def count_total_X(grid):
+def count_total_sunk(grid):
     return sum(row.count('*') for row in grid)
 
 # function to copy the striked ships to the computer (hide) grid
@@ -66,8 +66,18 @@ def copy_stars(source_grid, destination_grid):
 def play_battleships():
     print("Welcome to Battleships!")
     while True:
-        size = int(input("Enter the grid size: "))
-        num_ships = int(input("Enter the number of battleships: "))
+        size = 0
+        num_ships = 0
+
+        while size <= 1:
+            size = int(input("Enter the grid size (must be greater than 1): "))
+            if size <= 1:
+                print("Please enter a number greater than 1.")
+
+        while num_ships <= 0:
+            num_ships = int(input("Enter the number of battleships (must be greater than 0): "))
+            if num_ships <= 0:
+                print("Please enter a number greater than 0.")
 
         user_grid = create_grid(size)
         computer_grid = create_grid(size)
@@ -82,8 +92,6 @@ def play_battleships():
         while True:
             print("Your Grid:")
             print_grid(user_grid)
-            # print("Computer's Grid hidden:")
-            # print_grid(computer_grid)
 
             copy_stars(computer_grid, computer_grid_hide)
 
@@ -113,7 +121,7 @@ def play_battleships():
                 computer_attempts += 1
 
             # Check game end conditions
-            if count_total_X(computer_grid) == num_ships:
+            if count_total_sunk(computer_grid) == num_ships:
                 print("Congratulations! You sank all the computer's battleships in", user_attempts, "attempts.")
                 break
             
