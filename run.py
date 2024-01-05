@@ -1,5 +1,17 @@
+
+# -*- coding: utf-8 -*-
+
 import random
 import math
+
+try:
+    from flask import Flask, request
+    print("Flask è installato correttamente.")
+    app = Flask(__name__)
+except ImportError:
+    print("Errore: Flask non è installato.")
+
+
 
 # Function to create a grid of given size
 def create_grid(size):
@@ -33,17 +45,13 @@ def calculate_distance(grid, x, y):
     return round(min_distance, 2)
 
 # Function to get user's guess and validate if it's on the grid
-def get_user_guess(size):
-    while True:
-        try:
-            guessRow = int(input("Enter your guess row: "))
-            guessColumn = int(input("Enter your guess column: "))
-            if 0 <= guessRow < size and 0 <= guessColumn < size:
-                return guessRow, guessColumn
-            else:
-                print("Your guess is off-grid. Try again.")
-        except ValueError:
-            print("Invalid input. Please enter two numeric characters.")
+def get_user_guess_from_request(request_data):
+    try:
+        guessRow = int(request_data.get('guessRow'))
+        guessColumn = int(request_data.get('guessColumn'))
+        return guessRow, guessColumn
+    except (ValueError, TypeError):
+        return None
 
 # Function for computer's guess
 def get_computer_guess(size):
@@ -60,47 +68,39 @@ def copy_stars(source_grid, destination_grid):
         for col in range(len(source_grid[row])):
             if source_grid[row][col] == '*':
                 destination_grid[row][col] = '*'
-    
 
-# Main function to play the game
-def play_battleships():
-    print("Welcome to Battleships!")
+# Flask route to handle game requests
+@app.route('/play', methods=['POST'])
+def play():
+    data = request.form.to_dict()
+
+    size = int(data.get('size', 0))
+    num_ships = int(data.get('num_ships', 0))
+
+    user_grid = create_grid(size)
+    computer_grid = create_grid(size)
+    computer_grid_hide = create_grid(size)
+
+    place_battleships(user_grid, num_ships)
+    place_battleships(computer_grid, num_ships)
+
+    user_attempts = 0
+    computer_attempts = 0
+
     while True:
-        size = 0
-        num_ships = 0
+        print("Your Grid:")
+        print_grid(user_grid)
 
-        while size <= 1:
-            size = int(input("Enter the grid size (must be greater than 1): "))
-            if size <= 1:
-                print("Please enter a number greater than 1.")
+        copy_stars(computer_grid, computer_grid_hide)
 
-        while num_ships <= 0:
-            num_ships = int(input("Enter the number of battleships (must be greater than 0): "))
-            if num_ships <= 0:
-                print("Please enter a number greater than 0.")
+        print("Computer's Grid:")
+        print_grid(computer_grid_hide)
 
-        user_grid = create_grid(size)
-        computer_grid = create_grid(size)
-        computer_grid_hide = create_grid(size)
-
-        place_battleships(user_grid, num_ships)
-        place_battleships(computer_grid, num_ships)
-
-        user_attempts = 0
-        computer_attempts = 0
-
-        while True:
-            print("Your Grid:")
-            print_grid(user_grid)
-
-            copy_stars(computer_grid, computer_grid_hide)
-
-            print("Computer's Grid:")
-            print_grid(computer_grid_hide)
-
-            # User's turn
-            print("Your Turn:")
-            user_x, user_y = get_user_guess(size)
+        # User's turn
+        print("Your Turn:")
+        user_guess = get_user_guess_from_request(data)
+        if user_guess is not None:
+            user_x, user_y = user_guess
             if computer_grid[user_x][user_y] == 'X':
                 print("Congratulations! You hit a battleship!")
                 computer_grid[user_x][user_y] = '*'
@@ -109,31 +109,28 @@ def play_battleships():
                 print("Oops! You missed.")
                 user_attempts += 1
 
-            # Computer's turn
-            print("Computer's Turn:")
-            comp_x, comp_y = get_computer_guess(size)
-            if user_grid[comp_x][comp_y] == 'X':
-                print("Computer hit your battleship!")
-                user_grid[comp_x][comp_y] = '*'
-                computer_attempts += 1
-            else:
-                print("Computer missed.")
-                computer_attempts += 1
+        # Computer's turn
+        print("Computer's Turn:")
+        comp_x, comp_y = get_computer_guess(size)
+        if user_grid[comp_x][comp_y] == 'X':
+            print("Computer hit your battleship!")
+            user_grid[comp_x][comp_y] = '*'
+            computer_attempts += 1
+        else:
+            print("Computer missed.")
+            computer_attempts += 1
 
-            # Check game end conditions
-            if count_total_sunk(computer_grid) == num_ships:
-                print("Congratulations! You sank all the computer's battleships in", user_attempts, "attempts.")
-                break
-            
-            if all('X' not in row for row in user_grid):
-                print("Computer sank all your battleships in", computer_attempts, "attempts. Better luck next time!")
-                break
-
-        play_again = input("Do you want to play again? (yes/no): ")
-        if play_again.lower() != 'yes':
-            print("Thank you for playing. Goodbye!")
+        # Check game end conditions
+        if count_total_sunk(computer_grid) == num_ships:
+            print("Congratulations! You sank all the computer's battleships in", user_attempts, "attempts.")
             break
 
-# Run the game
+        if all('X' not in row for row in user_grid):
+            print("Computer sank all your battleships in", computer_attempts, "attempts. Better luck next time!")
+            break
+
+    return "Game over"
+
 if __name__ == "__main__":
-    play_battleships()
+    app.run(port=5000)  # Run the Flask app locally on port 5000
+
