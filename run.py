@@ -1,6 +1,7 @@
+
+# python code goes here
 import random
 import math
-from pprint import pprint
 
 # Function to create a grid of given size
 def create_grid(size):
