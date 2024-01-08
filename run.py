@@ -3,14 +3,17 @@
 import random
 import math
 
+
 # Function to create a grid of given size
 def create_grid(size):
     return [['0' for _ in range(size)] for _ in range(size)]
+
 
 # Function to print the grid
 def print_grid(grid):
     for row in grid:
         print(" ".join(row))
+
 
 # Function to place battleships randomly on the grid
 def place_battleships(grid, num_ships):
@@ -23,6 +26,7 @@ def place_battleships(grid, num_ships):
             y = random.randint(0, size - 1)
         grid[x][y] = 'X'
 
+
 # Function to calculate distance to the nearest battleship
 def calculate_distance(grid, x, y):
     size = len(grid)
@@ -33,6 +37,7 @@ def calculate_distance(grid, x, y):
                 distance = math.sqrt((x - i)**2 + (y - j)**2)
                 min_distance = min(min_distance, distance)
     return round(min_distance, 2)
+
 
 # Function to get user's guess and validate if it's on the grid
 def get_user_guess(size):
@@ -47,14 +52,17 @@ def get_user_guess(size):
         except ValueError:
             print("Invalid input. Please enter two numeric characters.")
 
+
 # Function for computer's guess
 def get_computer_guess(size):
     x = random.randint(0, size - 1)
     y = random.randint(0, size - 1)
     return x, y
 
+
 def count_total_sunk(grid):
     return sum(row.count('*') for row in grid)
+
 
 # function to copy the striked ships to the computer (hide) grid
 def copy_stars(source_grid, destination_grid):
@@ -62,11 +70,13 @@ def copy_stars(source_grid, destination_grid):
         for col in range(len(source_grid[row])):
             if source_grid[row][col] == '*':
                 destination_grid[row][col] = '*'
-    
+
 
 # Main function to play the game
 def play_battleships():
     print("Welcome to Battleships!")
+    print("Top left corner is row: 0, col: 0")
+    print("---------------------------------")
     while True:
         size = 0
         num_ships = 0
@@ -126,7 +136,7 @@ def play_battleships():
             if count_total_sunk(computer_grid) == num_ships:
                 print("Congratulations! You sank all the computer's battleships in", user_attempts, "attempts.")
                 break
-            
+
             if all('X' not in row for row in user_grid):
                 print("Computer sank all your battleships in", computer_attempts, "attempts. Better luck next time!")
                 break
@@ -135,6 +145,7 @@ def play_battleships():
         if play_again.lower() != 'yes':
             print("Thank you for playing. Goodbye!")
             break
+
 
 # Run the game
 if __name__ == "__main__":
