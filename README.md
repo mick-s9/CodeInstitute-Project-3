@@ -1,7 +1,7 @@
 # CodeInstitute-Project-2
 <H1>Battleship game</H1>
 Welcome to Battleships! This is a simple implementation of the classic game Battleships in Python.
-You can play the game online by visiting [Battleships Game](https://example.com/battleships).
+You can play the game online by visiting [Battleships Game]([https://example.com/battleships](https://project3-codeinstitute-6f93f603e7aa.herokuapp.com/)).
 
 <img width="1147" alt="image" src="https://github.com/mick-s9/CodeInstitute-Project-3/assets/65968792/e9514e39-5daa-4dbf-9d90-93b8c61a1a16">
 
