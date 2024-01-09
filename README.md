@@ -16,8 +16,12 @@ Guesses are marked on the board with an X and. Hits are indicated by *.
 <ul>
     <li>The player selected the board size and the number of battleships to insert on the grig</li>
     <img width="572" alt="image" src="https://github.com/mick-s9/CodeInstitute_Project_2/assets/65968792/b1182fcd-fa17-495a-b035-594947c4f42b">
-
     <li>The two grids appear where in the player grid the ships are marked with an</li>
     <img width="599" alt="image" src="https://github.com/mick-s9/CodeInstitute-Project-3/assets/65968792/aa918de0-2fdc-4f5e-bc4c-20125fb624af">
+    <li>Once the coordinates are entered, if a ship is hit it will be displayed on the grid with *</li>
+    <img width="476" alt="image" src="https://github.com/mick-s9/CodeInstitute-Project-3/assets/65968792/42a7fd3c-d032-4d75-a9e0-867ff667910b">
+    <li>if coordinates are entered that are outside the grid, the program will ask you to enter the numbers again (column and row)</li>
+    <img width="401" alt="image" src="https://github.com/mick-s9/CodeInstitute-Project-3/assets/65968792/e4237b96-a074-417d-a203-59942f43d61f">
+
 </ul>
 
