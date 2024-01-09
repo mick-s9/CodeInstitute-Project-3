@@ -134,12 +134,32 @@ def play_battleships():
 
             # Check game end conditions
             if count_total_sunk(computer_grid) == num_ships:
-                print("Congratulations! You sank all the computer's battleships in", user_attempts, "attempts.")
-                break
+                print("Congratulations! You sank all the computer's battleships in {} attempts.".format(user_attempts))
+                print("Your Grid:")
+                print_grid(user_grid)
 
-            if all('X' not in row for row in user_grid):
-                print("Computer sank all your battleships in", computer_attempts, "attempts. Better luck next time!")
+                copy_stars(computer_grid, computer_grid_hide)
+
+                print("Computer's Grid:")
+                print_grid(computer_grid_hide)
                 break
+            elif all('X' not in row for row in user_grid):
+                print("Computer sank all your battleships in {} attempts. Better luck next time!".format(computer_attempts))
+                print("Your Grid:")
+                print_grid(user_grid)
+
+                copy_stars(computer_grid, computer_grid_hide)
+
+                print("Computer's Grid:")
+                print_grid(computer_grid_hide)
+                break
+            else:
+                copy_stars(computer_grid, computer_grid_hide)
+                print("-------------------------------------")
+                print("at the end of this round the score is:")
+                print("user:",count_total_sunk(computer_grid_hide))
+                print("computer:",count_total_sunk(user_grid))
+                print("-------------------------------------")
 
         play_again = input("Do you want to play again? (yes/no):\n")
         if play_again.lower() != 'yes':
