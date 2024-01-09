@@ -170,3 +170,4 @@ def play_battleships():
 # Run the game
 if __name__ == "__main__":
     play_battleships()
+    
