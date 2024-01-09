@@ -157,8 +157,8 @@ def play_battleships():
                 copy_stars(computer_grid, computer_grid_hide)
                 print("-------------------------------------")
                 print("at the end of this round the score is:")
-                print("user:",count_total_sunk(computer_grid_hide))
-                print("computer:",count_total_sunk(user_grid))
+                print("user:", count_total_sunk(computer_grid_hide))
+                print("computer:", count_total_sunk(user_grid))
                 print("-------------------------------------")
 
         play_again = input("Do you want to play again? (yes/no):\n")
@@ -170,4 +170,3 @@ def play_battleships():
 # Run the game
 if __name__ == "__main__":
     play_battleships()
-    
