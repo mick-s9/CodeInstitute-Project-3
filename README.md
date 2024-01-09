@@ -1,45 +1,23 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# CodeInstitute-Project-2
+<H1>Battleship game</H1>
+Welcome to Battleships! This is a simple implementation of the classic game Battleships in Python.
+You can play the game online by visiting [Battleships Game](https://example.com/battleships).
 
-Welcome,
+<img width="1104" alt="image" src="https://github.com/mick-s9/CodeInstitute_Project_2/assets/65968792/9cda5726-03e6-41e3-abb3-97ee8415ce7a">
 
-This is the Code Institute student template for Gitpod. We have preinstalled all of the tools you need to get started. You can safely delete this README.md file, or change it for your own project. Please do read it at least once, though! It contains some important information about Gitpod and the extensions we use.
 
-## Gitpod Reminders
 
-To run a frontend (HTML, CSS, Javascript only) application in Gitpod, in the terminal, type:
+<h1>How to play</h1>
+In this version of the Battleship game, the player determines the grid size and the number of ships to sink. Once both numbers are entered (which must be greater than 2 and 0, respectively), two grids are generated—one for the user and one for the computer.
+Guesses are marked on the board with an X and. Hits are indicated by *.
 
-`python3 -m http.server`
 
-A blue button should appear to click: *Make Public*,
+<h1>Features</h1>
+<ul>
+    <li>The player selected the board size and the number of battleships to insert on the grig</li>
+    <img width="572" alt="image" src="https://github.com/mick-s9/CodeInstitute_Project_2/assets/65968792/b1182fcd-fa17-495a-b035-594947c4f42b">
 
-Another blue button should appear to click: *Open Browser*.
+    <li>The two grids appear where in the player grid the ships are marked with an</li>
+    <img width="599" alt="image" src="https://github.com/mick-s9/CodeInstitute-Project-3/assets/65968792/aa918de0-2fdc-4f5e-bc4c-20125fb624af">
+</ul>
 
-To run a backend Python file, type `python3 app.py`, if your Python file is named `app.py` of course.
-
-A blue button should appear to click: *Make Public*,
-
-Another blue button should appear to click: *Open Browser*.
-
-In Gitpod you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
-
-## Updates Since The Instructional Video
-
-We continually tweak and adjust this template to help give you the best experience. Here is the version history:
-
-**October 21 2020:** Versions of the HTMLHint, Prettier, Bootstrap4 CDN and Auto Close extensions updated. The Python extension needs to stay the same version for now.
-
-**October 08 2020:** Additional large Gitpod files (`core.mongo*` and `core.python*`) are now hidden in the Explorer, and have been added to the `.gitignore` by default.
-
-**September 22 2020:** Gitpod occasionally creates large `core.Microsoft` files. These are now hidden in the Explorer. A `.gitignore` file has been created to make sure these files will not be committed, along with other common files.
-
-**April 16 2020:** The template now automatically installs MySQL instead of relying on the Gitpod MySQL image. The message about a Python linter not being installed has been dealt with, and the set-up files are now hidden in the Gitpod file explorer.
-
-**April 13 2020:** Added the _Prettier_ code beautifier extension instead of the code formatter built-in to Gitpod.
-
-**February 2020:** The initialisation files now _do not_ auto-delete. They will remain in your project. You can safely ignore them. They just make sure that your workspace is configured correctly each time you open it. It will also prevent the Gitpod configuration popup from appearing.
-
-**December 2019:** Added Eventyret's Bootstrap 4 extension. Type `!bscdn` in a HTML file to add the Bootstrap boilerplate. Check out the <a href="https://github.com/Eventyret/vscode-bcdn" target="_blank">README.md file at the official repo</a> for more options.
-
---------
-
-Happy coding!
