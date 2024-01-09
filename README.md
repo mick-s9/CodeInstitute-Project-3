@@ -3,7 +3,6 @@
 Welcome to Battleships! This is a simple implementation of the classic game Battleships in Python.
 You can play the game online by visiting [Battleships Game](https://example.com/battleships).
 
-<img width="1104" alt="image" src="https://github.com/mick-s9/CodeInstitute_Project_2/assets/65968792/9cda5726-03e6-41e3-abb3-97ee8415ce7a">
 
 
 
