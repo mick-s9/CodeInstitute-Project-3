@@ -27,18 +27,6 @@ def place_battleships(grid, num_ships):
         grid[x][y] = 'X'
 
 
-# Function to calculate distance to the nearest battleship
-def calculate_distance(grid, x, y):
-    size = len(grid)
-    min_distance = size  # Maximum possible distance
-    for i in range(size):
-        for j in range(size):
-            if grid[i][j] == 'X':
-                distance = math.sqrt((x - i)**2 + (y - j)**2)
-                min_distance = min(min_distance, distance)
-    return round(min_distance, 2)
-
-
 # Function to get user's guess and validate if it's on the grid
 def get_user_guess(size):
     while True:
